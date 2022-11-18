@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useClient from "../../hooks/useClient";
+import PatientInformation from "../PatientInformation/PatientInformation";
 
 const PatientLookup = () => {
   const { getPatient, patient, loading, error } = useClient();
@@ -13,6 +14,8 @@ const PatientLookup = () => {
       getPatient(patientId);
     }
   };
+
+  console.log(patient);
 
   return (
     <div>
@@ -38,37 +41,7 @@ const PatientLookup = () => {
         {error && (
           <h1 className="text-md font-regular text-center mt-12">{error}</h1>
         )}
-        {patient && (
-          <div className="text-center mt-12">
-            <h1 className="text-xl font-medium mb-4 text-slate-200">
-              Patient Information
-            </h1>
-            <div className="grid grid-cols-3">
-              <div className="mb-2">
-                <p className="text-sm font-light text-slate-400">Name</p>
-                <h1 className="text-md font-regular">{patient.name}</h1>
-              </div>
-              <div className="mb-2">
-                <p className="text-sm font-light text-slate-400">
-                  Date of Birth
-                </p>
-                <h1 className="text-md font-regular">
-                  {new Date(patient.birthDate).toLocaleDateString("en-us", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </h1>
-              </div>
-              <div className="mb-2">
-                <p className="text-sm font-light text-slate-400">Gender</p>
-                <h1 className="text-md font-regular capitalize">
-                  {patient.gender}
-                </h1>
-              </div>
-            </div>
-          </div>
-        )}
+        {patient && <PatientInformation patient={patient} />}
       </div>
     </div>
   );
