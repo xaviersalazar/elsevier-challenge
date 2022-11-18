@@ -1,19 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FHIR from "fhirclient";
 
 const client = FHIR.client("https://r2.smarthealthit.org/");
 
-const useClient = (id) => {
+const useClient = () => {
   const [patient, setPatient] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const getPatient = async () => {
-      setLoading(true);
+  const getPatient = async (id) => {
+    setLoading(true);
+    setPatient(null);
+    setError(false);
 
+    try {
       const [personalInfo, conditions] = await Promise.all([
-        client.request(`Patient/${id}`),
-        client.request(`Condition?patient=${id}`),
+        client.request(`Patient/${id.toLowerCase().trim()}`),
+        client.request(`Condition?patient=${id.toLowerCase().trim()}`),
       ]);
 
       const { name, birthDate, gender } = personalInfo;
@@ -34,15 +37,23 @@ const useClient = (id) => {
       };
 
       setPatient(data);
-      setLoading(false);
-    };
+    } catch (error) {
+      const errorText =
+        error.status === 404
+          ? "Patient not found. Please ensure it's correct or try a different patient id"
+          : "Oops! Something happened, please try again";
 
-    getPatient();
-  }, [id]);
+      setError(errorText);
+    }
+
+    setLoading(false);
+  };
 
   return {
+    getPatient,
     patient,
     loading,
+    error,
   };
 };
 
