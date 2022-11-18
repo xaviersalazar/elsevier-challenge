@@ -1,3 +1,4 @@
+import { FiExternalLink } from "react-icons/fi";
 import { formatDate } from "../../utils/utils";
 
 const PatientInformation = ({
@@ -38,7 +39,13 @@ const PatientInformation = ({
             {formatDate(initialDate) || "N/A"}
           </div>
           <div className="table-cell w-[60%] text-xs xl:text-sm font-light text-slate-400 pl-2 pr-4 py-4 border-b border-slate-50">
-            {conditionName}
+            <a
+              className="hover:underline hover:underline-offset-2 hover:decoration-blue-300"
+              href={`https://pubmed.ncbi.nlm.nih.gov/?term=${conditionName}`}
+              target="_blank"
+            >
+              {conditionName} <FiExternalLink className="inline ml-1 mb-0.5" />
+            </a>
           </div>
         </div>
       ))}
