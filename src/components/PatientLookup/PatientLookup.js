@@ -39,27 +39,33 @@ const PatientLookup = () => {
           <h1 className="text-md font-regular text-center mt-12">{error}</h1>
         )}
         {patient && (
-          <div className="text-center mt-12 p-4 shadow-[0_8px_24px_rgba(223,228,234,0.6)] rounded-2xl">
-            <h1 className="text-xl font-medium mb-4">Patient Information</h1>
-            <div className="mb-2">
-              <p className="text-sm font-light text-slate-400">Name</p>
-              <h1 className="text-lg font-regular">{patient.name}</h1>
-            </div>
-            <div className="mb-2">
-              <p className="text-sm font-light text-slate-400">Date of Birth</p>
-              <h1 className="text-lg font-regular">
-                {new Date(patient.birthDate).toLocaleDateString("en-us", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </h1>
-            </div>
-            <div className="mb-2">
-              <p className="text-sm font-light text-slate-400">Gender</p>
-              <h1 className="text-lg font-regular capitalize">
-                {patient.gender}
-              </h1>
+          <div className="text-center mt-12">
+            <h1 className="text-xl font-medium mb-4 text-slate-200">
+              Patient Information
+            </h1>
+            <div className="grid grid-cols-3">
+              <div className="mb-2">
+                <p className="text-sm font-light text-slate-400">Name</p>
+                <h1 className="text-md font-regular">{patient.name}</h1>
+              </div>
+              <div className="mb-2">
+                <p className="text-sm font-light text-slate-400">
+                  Date of Birth
+                </p>
+                <h1 className="text-md font-regular">
+                  {new Date(patient.birthDate).toLocaleDateString("en-us", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </h1>
+              </div>
+              <div className="mb-2">
+                <p className="text-sm font-light text-slate-400">Gender</p>
+                <h1 className="text-md font-regular capitalize">
+                  {patient.gender}
+                </h1>
+              </div>
             </div>
           </div>
         )}

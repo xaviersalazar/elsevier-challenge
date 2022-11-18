@@ -1,4 +1,4 @@
-import PatientLookup from "./components/PatientLookup./PatientLookup";
+import PatientLookup from "./components/PatientLookup/PatientLookup";
 
 function App() {
   return (
