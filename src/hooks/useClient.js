@@ -25,7 +25,7 @@ const useClient = () => {
         name: `${name[0].given.join(" ")} ${name[0].family[0]}`,
         birthDate,
         gender,
-        conditions: conditions.entry.map(
+        conditions: conditions.entry?.map(
           ({ resource }) =>
             resource.clinicalStatus === "active" && {
               id: resource.id,
