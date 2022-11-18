@@ -15,8 +15,6 @@ const PatientLookup = () => {
     }
   };
 
-  console.log(patient);
-
   return (
     <div>
       <div className="w-full mt-16">
