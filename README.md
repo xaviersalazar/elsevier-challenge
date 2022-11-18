@@ -3,6 +3,7 @@
 ### How to run
 - Clone repo
 - `npm install`
+- `npm run start`
 - App will start at `http://localhost:3000/`
 
 ### How to use
